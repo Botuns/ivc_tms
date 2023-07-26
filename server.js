@@ -1,10 +1,12 @@
 const _express = require('express')
 const _app = _express()
+const _cors = require('cors')
 const _dbConnect = require('./configs/_dbConfig')
 const { _notFound, _errorHandler } = require("./middlewares/_errorHandler");
 const _authRoutes = require('./routes/auth.routes')
 const _atfalRoutes = require('./routes/atfal.routes')
 _app.use(_express.json()); 
+_app.use(_cors())
 _dbConnect()
 const PORT = process.env.PORT || 4000; //port number
 _app.use('/api',_authRoutes)

@@ -17,7 +17,4 @@ const _tagNumGenerator=()=> {
 }
 
 // Example usage
-const otp = _tagNumGenerator();
-console.log('Generated OTP:', otp);
-
 module.exports= { _tagNumGenerator}

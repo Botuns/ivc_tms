@@ -90,6 +90,13 @@ class AtfalService {
       throw new Error(`Error fetching count of Atfal for Stage: ${stage}`);
     }
   }
+  async getAtfalByIds(ids) {
+    try {
+      return await Atfal.find({ _id: { $in: ids } });
+    } catch (error) {
+      throw new Error('Error fetching Atfal by IDs');
+    }
+  }
 }
 
 module.exports = AtfalService;
