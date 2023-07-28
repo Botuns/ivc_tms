@@ -13,7 +13,7 @@ var atfalSchema= new mongoose.Schema({
     },
     _dila:{
         type:String,
-        enum:['Ibadan','Oyo','Monatan','Oluyole-Onaara','Asipa-Oleyo','Omi-adio','Apata','Ikoyi-ile-Ogbomosho','Ibarapa','Coca-cola','Akinyele',],
+        enum:['Ibadan','Oyo','Monatan','Oluyole-Onaara','Asipa-Oleyo','Omi-adio','Apata','Ikoyi-ile-Ogbomosho','Ibarapa','Coca-cola','Akinyele','Oke-ogun'],
         required:true,
     },
     _tagNumber:{
@@ -26,7 +26,7 @@ var atfalSchema= new mongoose.Schema({
     },
     _stage:{
         type:String,
-        enum:['vip','stage_one','stage_two','stage_three'],
+        enum:['stage_one','stage_two','stage_three','stage_four'],
         required:true
     }
 },

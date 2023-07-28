@@ -1,20 +1,44 @@
-// Import the necessary modules
-const crypto = require('crypto');
+const Atfal = require('../models/_atfalModel');
 
-// Function to generate an OTP code
-const _tagNumGenerator=()=> {
-  // Specify the length of the OTP code
-  const otpLength = 4;
+async function _tagNumGenerator() {
+  try {
+    // Find the last inserted document with the highest tag number
+    const lastAtfal = await Atfal.findOne({}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
 
-  // Generate a random buffer
-  const buffer = crypto.randomBytes(otpLength);
+    let lastTagNumber = 0;
+    if (lastAtfal) {
+      lastTagNumber = parseInt(lastAtfal._tagNumber.replace('ATF', ''), 10);
+    }
 
-  // Convert the buffer to a hexadecimal string
-  const otpCode = buffer.toString('hex');
+    // Increment the tag number and pad it with leading zeroes to get the desired format
+    const nextTagNumber = lastTagNumber + 1;
+    const nextTag = `ATF${nextTagNumber.toString().padStart(4, '0')}`;
 
-  // Return the OTP code
-  return otpCode;
+    return nextTag;
+  } catch (error) {
+    throw new Error('Error generating next tag number');
+  }
 }
 
-// Example usage
-module.exports= { _tagNumGenerator}
+
+async function _tagNumGeneratorForAttendee() {
+  try {
+    // Find the last inserted document with the highest tag number
+    const lastAtfal = await Atfal.findOne({}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
+
+    let lastTagNumber = 0;
+    if (lastAtfal) {
+      lastTagNumber = parseInt(lastAtfal._tagNumber.replace('K', ''), 10);
+    }
+
+    // Increment the tag number and pad it with leading zeroes to get the desired format
+    const nextTagNumber = lastTagNumber + 1;
+    const nextTag = `K${nextTagNumber.toString().padStart(4, '0')}`;
+
+    return nextTag;
+  } catch (error) {
+    throw new Error('Error generating next tag number');
+  }
+}
+
+module.exports = { _tagNumGenerator,_tagNumGeneratorForAttendee };
