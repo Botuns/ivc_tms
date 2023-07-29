@@ -18,4 +18,8 @@ router.get('/attendees/count/auxiliary/:auxiliary', attendeeController.getCountO
 // Create a new attendee
 router.post('/attendees', attendeeController.createAttendee);
 
+// get by ids
+router.get('/attendee/:ids',attendeeController.getAttendeesByIds)
+
+
 module.exports = router;

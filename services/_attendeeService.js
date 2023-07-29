@@ -1,4 +1,4 @@
-const Attendee = require('../models/attendeeModel');
+const Attendee = require('../models/_attendeeModel');
 const { _tagNumGeneratorForAttendee } = require('../utils/_tagGenerator');
 
 class AttendeeService {
@@ -31,6 +31,13 @@ class AttendeeService {
       return await Attendee.countDocuments({ auxiliary });
     } catch (error) {
       throw new Error(`Error fetching count of attendees for auxiliary: ${auxiliary}`);
+    }
+  }
+  async getAtfalByIds(ids) {
+    try {
+      return await Attendee.find({ _id: { $in: ids } });
+    } catch (error) {
+      throw new Error('Error fetching Attendees by IDs');
     }
   }
 

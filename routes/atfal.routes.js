@@ -8,6 +8,8 @@ router.get('/atfal/tag/:tagNumber', atfalController.getAtfalByTagNumber);
 router.post('/atfal/new',atfalController.createAtfal)
 router.get('/atfal/counts',atfalController.getCountOfAllAtfal)
 router.get('/atfal/:ids',atfalController.getAtfalByIds)
+router.get('/atfal/stage/:stage',atfalController.getCountOfAtfalByStage)
+
 
 
 module.exports= router

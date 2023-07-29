@@ -96,6 +96,7 @@ exports.getCountOfAtfalByDila = async (req, res) => {
 exports.getCountOfAtfalByStage = async (req, res) => {
   const { stage } = req.params;
   try {
+    console.log('here')
     const countOfAtfalByStage = await atfalService.getCountOfAtfalByStage(stage);
     res.json({ count: countOfAtfalByStage });
   } catch (error) {

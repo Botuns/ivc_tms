@@ -53,7 +53,7 @@ class AtfalService {
   async createAtfal(data) {
     try {
       const {fullName,age,dila,muqami,stage} = data
-      const tagNumber = await _tagNumGenerator()
+      const tagNumber = await _tagNumGenerator(dila)
       const atfalObj={
         _fullName:fullName,
         _age:age,
