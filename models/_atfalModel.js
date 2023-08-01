@@ -28,7 +28,17 @@ var atfalSchema= new mongoose.Schema({
         type:String,
         enum:['stage_one','stage_two','stage_three','stage_four'],
         required:true
+    },
+    amountPaid:{
+        type:Number,
+        required:true
+    },
+    status:{
+        type:String,
+        enum:['paid','unfinished','unpaid'],
+        default:'unpaid'
     }
+    
 },
 { timestamps: true }
 )

@@ -1,4 +1,5 @@
 const Atfal = require('../models/_atfalModel');
+const Attendee= require('../models/_attendeeModel')
 
 async function _tagNumGenerator(dila) {
   try {
@@ -25,7 +26,7 @@ async function _tagNumGenerator(dila) {
 async function _tagNumGeneratorForAttendee(type) {
   try {
     // Find the last inserted document with the highest tag number
-    const lastAtfal = await Atfal.findOne({type}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
+    const lastAtfal = await Attendee.findOne({type}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
 
     let lastTagNumber = 0;
     if (lastAtfal) {

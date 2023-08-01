@@ -7,7 +7,7 @@ const attendeeSchema = new mongoose.Schema({
   },
   auxiliary: {
     type: String,
-    enum: ['lajna', 'khudam', 'ansarullah'],
+    enum: ['lajna', 'khudam', 'ansarullah','not-applicable'],
     required: true,
   },
   type: {
@@ -21,13 +21,17 @@ const attendeeSchema = new mongoose.Schema({
       'Ishaat',
       'Electricity',
       'Mobilization',
-      'Volunteer',
+      'Mulk-Officer',
+      'State-Officer'
     ],
     required: true,
   },
   tagNumber: {
     type: String,
     required: true,
+  },
+  phoneNumber:{
+    type: String,
   },
 }, { timestamps: true });
 

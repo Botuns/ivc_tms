@@ -52,7 +52,24 @@ class AtfalService {
 
   async createAtfal(data) {
     try {
-      const {fullName,age,dila,muqami,stage} = data
+      const {fullName,age,dila,muqami,stage,amountPaid} = data
+      const isDuplicate = await Atfal.findOne({
+        _fullName: fullName,
+        _age: age,
+        _dila: dila,
+        _muqami: muqami,
+        _stage: stage,
+      });
+  
+      if (isDuplicate) {
+        return 'Duplicate Entry Detected';
+      }
+      let status;
+      if (amountPaid === 5000) {
+        status = 'paid';
+      } else if (amountPaid < 5000 && amountPaid > 0) {
+        status = 'unfinished';
+      } 
       const tagNumber = await _tagNumGenerator(dila)
       const atfalObj={
         _fullName:fullName,
@@ -60,11 +77,17 @@ class AtfalService {
         _dila:dila,
         _tagNumber:tagNumber,
         _muqami:muqami,
-        _stage:stage
+        _stage:stage,
+        amountPaid:amountPaid,
+        status:status
       }
       return await Atfal.create(atfalObj);
+      
+
+
+      
     } catch (error) {
-      throw new Error('Error creating new Atfal');
+      throw new Error(error);
     }
   }
 
