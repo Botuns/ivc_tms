@@ -11,8 +11,9 @@ async function _tagNumGenerator() {
     // Convert the buffer to a hexadecimal string
     const otpCode = buffer.toString('hex');
     const nextTag = `ATF${otpCode}`;
+    const res = nextTag.toUpperCase()
 
-    return nextTag;
+    return res;
   } catch (error) {
     throw new Error('Error generating next tag number');
   }
@@ -29,8 +30,9 @@ async function _tagNumGeneratorForAttendee() {
     // Convert the buffer to a hexadecimal string
     const otpCode = buffer.toString('hex');
     const nextTag = `K${otpCode}`;
+    const res = nextTag.toUpperCase()
 
-    return nextTag;
+    return res;
   } catch (error) {
     throw new Error(error);
   }
