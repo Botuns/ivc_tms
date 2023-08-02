@@ -70,7 +70,7 @@ class AtfalService {
       } else if (amountPaid < 5000 && amountPaid > 0) {
         status = 'unfinished';
       } 
-      const tagNumber = await _tagNumGenerator(dila)
+      const tagNumber = await _tagNumGenerator()
       const atfalObj={
         _fullName:fullName,
         _age:age,

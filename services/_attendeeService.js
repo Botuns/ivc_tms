@@ -46,7 +46,7 @@ class AttendeeService {
       const { fullName, auxiliary, type,phoneNumber } = data;
 
       // Generate the next tag number based on the type using _tagNumGenerator function
-      const tagNumber = await _tagNumGeneratorForAttendee(phoneNumber);
+      const tagNumber = await _tagNumGeneratorForAttendee();
 
       const attendeeObj = {
         fullName,

@@ -1,20 +1,16 @@
-const Atfal = require('../models/_atfalModel');
+// const Atfal = require('../models/_atfalModel');
 const Attendee= require('../models/_attendeeModel')
-
-async function _tagNumGenerator(dila) {
+const crypto = require('crypto')
+async function _tagNumGenerator() {
   try {
-    const _dila = dila
-    // Find the last inserted document with the highest tag number
-    const lastAtfal = await Atfal.findOne({_dila}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
+    const otpLength = 2;
 
-    let lastTagNumber = 0;
-    if (lastAtfal) {
-      lastTagNumber = parseInt(lastAtfal._tagNumber.replace('ATF', ''), 10);
-    }
-
-    // Increment the tag number and pad it with leading zeroes to get the desired format
-    const nextTagNumber = lastTagNumber + 1;
-    const nextTag = `ATF${nextTagNumber.toString().padStart(4, '0')}`;
+    // Generate a random buffer
+    const buffer = crypto.randomBytes(otpLength);
+  
+    // Convert the buffer to a hexadecimal string
+    const otpCode = buffer.toString('hex');
+    const nextTag = `ATF${otpCode}`;
 
     return nextTag;
   } catch (error) {
@@ -23,19 +19,16 @@ async function _tagNumGenerator(dila) {
 }
 
 
-async function _tagNumGeneratorForAttendee(phoneNumber) {
+async function _tagNumGeneratorForAttendee() {
   try {
-    // Find the last inserted document with the highest tag number
-    const lastAttendee = await Attendee.findOne({phoneNumber}, { tagNumber: 1 }, { sort: { tagNumber: -1 } });
+    const otpLength = 2;
 
-    let lastTagNumber = 0;
-    if (lastAttendee) {
-      lastTagNumber = parseInt(lastAttendee.tagNumber.replace('k', ''), 10);
-    }
-
-    // Increment the tag number and pad it with leading zeroes to get the desired format
-    const nextTagNumber = lastTagNumber + 1;
-    const nextTag = `k${nextTagNumber.toString().padStart(4, '0')}`;
+    // Generate a random buffer
+    const buffer = crypto.randomBytes(otpLength);
+  
+    // Convert the buffer to a hexadecimal string
+    const otpCode = buffer.toString('hex');
+    const nextTag = `K${otpCode}`;
 
     return nextTag;
   } catch (error) {
