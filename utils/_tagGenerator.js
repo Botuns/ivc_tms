@@ -30,7 +30,7 @@ async function _tagNumGenerator() {
     // // Convert the buffer to a hexadecimal string
     // const otpCode = buffer.toString('hex');
     const num = generateUniqueNumbers()
-    const nextTag = `ATF${num}`;
+    const nextTag = `ATF${num()}`;
     const res = nextTag.toUpperCase()
 
     return res;
@@ -51,7 +51,7 @@ async function _tagNumGeneratorForAttendee() {
     // const otpCode = buffer.toString('hex');
 
     const num = generateUniqueNumbers()
-    const nextTag = `K${num}`;
+    const nextTag = `K${num()}`;
     const res = nextTag.toUpperCase()
 
     return res;
