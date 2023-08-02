@@ -6,9 +6,9 @@ const registerUser = async (req, res) => {
         const { username, password } = req.body;
         const _username = username
         const _password = password
-        const isExists = User.find(username)
+        const isExists = await User.findOne({_username})
         if(isExists){
-            return res.status(400).json('user already exists')
+            return res.status(400).json({message:'user already exists',user: []})
         }
         const newUser = new User({ _username, _password });
         await newUser.save();
