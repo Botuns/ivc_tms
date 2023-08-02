@@ -23,23 +23,23 @@ async function _tagNumGenerator(dila) {
 }
 
 
-async function _tagNumGeneratorForAttendee(type) {
+async function _tagNumGeneratorForAttendee(phoneNumber) {
   try {
     // Find the last inserted document with the highest tag number
-    const lastAtfal = await Attendee.findOne({type}, { _tagNumber: 1 }, { sort: { _tagNumber: -1 } });
+    const lastAttendee = await Attendee.findOne({phoneNumber}, { tagNumber: 1 }, { sort: { tagNumber: -1 } });
 
     let lastTagNumber = 0;
-    if (lastAtfal) {
-      lastTagNumber = parseInt(lastAtfal._tagNumber.replace('K', ''), 10);
+    if (lastAttendee) {
+      lastTagNumber = parseInt(lastAttendee.tagNumber.replace('k', ''), 10);
     }
 
     // Increment the tag number and pad it with leading zeroes to get the desired format
     const nextTagNumber = lastTagNumber + 1;
-    const nextTag = `K${nextTagNumber.toString().padStart(4, '0')}`;
+    const nextTag = `k${nextTagNumber.toString().padStart(4, '0')}`;
 
     return nextTag;
   } catch (error) {
-    throw new Error('Error generating next tag number');
+    throw new Error(error);
   }
 }
 

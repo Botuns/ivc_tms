@@ -43,20 +43,22 @@ class AttendeeService {
 
   async createAttendee(data) {
     try {
-      const { fullName, auxiliary, type } = data;
+      const { fullName, auxiliary, type,phoneNumber } = data;
 
       // Generate the next tag number based on the type using _tagNumGenerator function
-      const tagNumber = await _tagNumGeneratorForAttendee(type);
+      const tagNumber = await _tagNumGeneratorForAttendee(phoneNumber);
 
       const attendeeObj = {
         fullName,
         auxiliary,
         type,
         tagNumber,
+        phoneNumber
       };
 
       return await Attendee.create(attendeeObj);
     } catch (error) {
+      console.log(error)
       throw new Error('Error creating new attendee');
     }
   }

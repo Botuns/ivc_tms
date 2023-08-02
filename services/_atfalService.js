@@ -122,6 +122,56 @@ class AtfalService {
       throw new Error('Error fetching Atfal by IDs');
     }
   }
+
+  async getCountOfPaidAtfalByDila(dila) {
+    try {
+      return await Atfal.countDocuments({ _dila: dila, status: 'paid' });
+    } catch (error) {
+      throw new Error(`Error fetching count of paid Atfal for Dila: ${dila}`);
+    }
+  }
+
+  async getCountOfUnpaidAtfalByDila(dila) {
+    try {
+      return await Atfal.countDocuments({ _dila: dila, status: 'unpaid' });
+    } catch (error) {
+      throw new Error(`Error fetching count of unpaid Atfal for Dila: ${dila}`);
+    }
+  }
+
+  async getCountOfUnfinishedAtfalByDila(dila) {
+    try {
+      return await Atfal.countDocuments({ _dila: dila, status: 'unfinished' });
+    } catch (error) {
+      throw new Error(`Error fetching count of unfinished Atfal for Dila: ${dila}`);
+    }
+  }
+
+  async getCountOfPaidAtfal() {
+    try {
+      return await Atfal.countDocuments({ status: 'paid' });
+    } catch (error) {
+      throw new Error(`Error fetching count of paid Atfal`);
+    }
+}
+
+  
+  async getCountOfUnpaidAtfal() {
+    try {
+      return await Atfal.countDocuments({ status: 'unpaid' });
+    } catch (error) {
+      throw new Error(`Error fetching count of unpaid Atfal`);
+    }
+  }
+  
+  async getCountOfUnfinishedAtfal() {
+    try {
+      return await Atfal.countDocuments({ status: 'unfinished' });
+    } catch (error) {
+      throw new Error(`Error fetching count of unfinished Atfal`);
+    }
+  }
+  
 }
 
 module.exports = AtfalService;

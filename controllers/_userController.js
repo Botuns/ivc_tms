@@ -31,7 +31,7 @@ const loginUser = async (req, res) => {
 
         if (user._password === _password) {
             // I might implement a JWT token here for authentication------- no need nigga!
-            return res.status(200).json({ message: 'Login successful' },user,{status:true});
+            return res.status(200).json({ message: 'Login successful', user: user, status: true });
         } else {
             return res.status(401).json({ error: 'Incorrect password' });
         }

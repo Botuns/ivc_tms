@@ -114,3 +114,40 @@ exports.getAtfalByIds = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getCountOfPaymentAtfalByDila = async (req, res) => {
+  const { dila } = req.params;
+  try {
+    const countOfPaidAtfal = await atfalService.getCountOfPaidAtfalByDila(dila);
+    const countOfUnpaidAtfal = await atfalService.getCountOfUnpaidAtfalByDila(dila);
+    const countOfUnfinishedAtfal = await atfalService.getCountOfUnfinishedAtfalByDila(dila);
+
+    res.json({
+      countOfPaidAtfal,
+      countOfUnpaidAtfal,
+      countOfUnfinishedAtfal,
+      status: true,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getCountsOfPaymentAtfal = async (req, res) => {
+  try {
+    console.log('asdf')
+
+    const countOfPaidAtfal = await atfalService.getCountOfPaidAtfal();
+    const countOfUnpaidAtfal = await atfalService.getCountOfUnpaidAtfal();
+    const countOfUnfinishedAtfal = await atfalService.getCountOfUnfinishedAtfal();
+
+    res.json({
+      countOfPaidAtfal,
+      countOfUnpaidAtfal,
+      countOfUnfinishedAtfal,
+      status: true,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
