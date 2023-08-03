@@ -64,12 +64,14 @@ class AtfalService {
       if (isDuplicate) {
         return 'Duplicate Entry Detected';
       }
-      let status;
-      if (amountPaid === 5000) {
-        status = 'paid';
-      } else if (amountPaid < 5000 && amountPaid > 0) {
-        status = 'unfinished';
-      } 
+      // let status;
+      // if (amountPaid === 5000) {
+      //   status = 'paid';
+      // } else if (amountPaid < 5000 && amountPaid > 0) {
+      //   status = 'unfinished';
+      // } 
+
+      const status = await this.calculateStatus(amountPaid) //chaged the giving of status
       const tagNumber = await _tagNumGenerator()
       const atfalObj={
         _fullName:fullName,
@@ -90,6 +92,19 @@ class AtfalService {
       throw new Error(error);
     }
   }
+
+  async calculateStatus(amountPaid) {
+    let status;
+    if (amountPaid === 5000) {
+      status = 'paid';
+    } else if (amountPaid < 5000 && amountPaid > 0) {
+      status = 'unfinished';
+    } else {
+      status = 'unpaid';
+    }
+    return status;
+  }
+  
 
   async getCountOfAllAtfal() {
     try {
