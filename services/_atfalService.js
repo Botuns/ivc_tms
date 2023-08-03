@@ -95,12 +95,13 @@ class AtfalService {
 
   async calculateStatus(amountPaid) {
     let status;
-    if (amountPaid === 5000) {
-      status = 'paid';
+    if (amountPaid === 0) {
+      status = 'unpaid';
     } else if (amountPaid < 5000 && amountPaid > 0) {
       status = 'unfinished';
-    } else {
-      status = 'unpaid';
+    } 
+    else {
+      status = 'paid';
     }
     return status;
   }
