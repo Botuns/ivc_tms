@@ -95,7 +95,7 @@ class AtfalService {
 
   async calculateStatus(amountPaid) {
     let status;
-    if (amountPaid === 0) {
+    if (amountPaid <= 0) {
       status = 'unpaid';
     } else if (amountPaid < 5000 && amountPaid > 0) {
       status = 'unfinished';
