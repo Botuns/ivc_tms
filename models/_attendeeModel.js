@@ -22,7 +22,8 @@ const attendeeSchema = new mongoose.Schema({
       'Electricity',
       'Mobilization',
       'Mulk-Officer',
-      'State-Officer'
+      'State-Officer',
+      'Plumbing'
     ],
     required: true,
   },
