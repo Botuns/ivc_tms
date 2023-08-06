@@ -114,6 +114,16 @@ exports.getAtfalByIds = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+exports.updatePayment = async (req, res) => {
+  console.log(req.params)
+  const { atfalId,amountToAdd } = req.params;
+  try {
+    const atfal = await atfalService.updatePaymentStatus(atfalId,amountToAdd);
+    res.json({ data: atfal,status:true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 exports.getCountOfPaymentAtfalByDila = async (req, res) => {
   const { dila } = req.params;
@@ -135,8 +145,6 @@ exports.getCountOfPaymentAtfalByDila = async (req, res) => {
 
 exports.getCountsOfPaymentAtfal = async (req, res) => {
   try {
-    console.log('asdf')
-
     const countOfPaidAtfal = await atfalService.getCountOfPaidAtfal();
     const countOfUnpaidAtfal = await atfalService.getCountOfUnpaidAtfal();
     const countOfUnfinishedAtfal = await atfalService.getCountOfUnfinishedAtfal();

@@ -10,8 +10,6 @@ router.get('/atfal/counts',atfalController.getCountOfAllAtfal)
 router.get('/atfal/counts/:dila',atfalController.getCountOfPaymentAtfalByDila)
 router.get('/atfal/payments',atfalController.getCountsOfPaymentAtfal)
 router.get('/atfal/:ids',atfalController.getAtfalByIds)
+router.put('/atfal/:atfalId/:amountToAdd',atfalController.updatePayment)
 router.get('/atfal/stage/:stage',atfalController.getCountOfAtfalByStage)
-
-
-
 module.exports= router

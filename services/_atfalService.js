@@ -187,7 +187,33 @@ class AtfalService {
       throw new Error(`Error fetching count of unfinished Atfal`);
     }
   }
+
+  async updatePaymentStatus(atfalId, amountToAdd) {
+    try {
+      const atfal = await Atfal.findById(atfalId);
+      if (!atfal) {
+        throw new Error(`Atfal with ID ${atfalId} not found`);
+      }
+
+      // Add the amount to the existing amountPaid
+      atfal.amountPaid = amountToAdd;
+
+      // Calculate the new status based on the updated amountPaid
+      const newStatus = await this.calculateStatus(atfal.amountPaid);
+
+      atfal.status = newStatus;
+
+      await atfal.save();
+
+      return atfal;
+    } catch (error) {
+      throw new Error(`Error updating payment status for Atfal with ID ${atfalId}: ${error.message}`);
+    }
+  }
+
   
 }
+
+
 
 module.exports = AtfalService;
