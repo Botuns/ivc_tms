@@ -1,13 +1,30 @@
-var axios = require("axios").default;
+// const AtfalModel = require('./models/_attendeeModel')
+// const dbConfig = require('./configs/_dbConfig');
+// const dbConnect = require('./configs/_dbConfig');
 
-var options = {
-  method: 'PUT',
-  url: 'http://localhost:4000/api/atfal/64cc9266eca2e70af4063c4a/5000',
-  headers: {Accept: '*/*', 'User-Agent': 'Thunder Client (https://www.thunderclient.com)'}
-};
+// const batchSize = 100; // Set the batch size as per your requirement
 
-axios.request(options).then(function (response) {
-  console.log(response.data);
-}).catch(function (error) {
-  console.error(error);
-});
+// async function deleteAllRecords() {
+//   // await dbConfig()
+//   await dbConnect()
+//   try {
+//     let deletedCount = 0;
+//     let done = false;
+
+//     while (!done) {
+//       const result = await AtfalModel.deleteMany();
+//       const { deletedCount: currentBatchDeletedCount } = result;
+//       deletedCount += currentBatchDeletedCount;
+
+//       if (currentBatchDeletedCount < batchSize) {
+//         done = true;
+//       }
+//     }
+
+//     console.log(`All ${deletedCount} records deleted successfully.`);
+//   } catch (err) {
+//     console.error('Error occurred:', err);
+//   }
+// }
+
+// deleteAllRecords()

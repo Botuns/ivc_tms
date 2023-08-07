@@ -23,7 +23,11 @@ const attendeeSchema = new mongoose.Schema({
       'Mobilization',
       'Mulk-Officer',
       'State-Officer',
-      'Plumbing'
+      'Plumbing',
+      'Vip-Care',
+      'Sports',
+      'Wakariamoh',
+      'Tajneed'
     ],
     required: true,
   },
