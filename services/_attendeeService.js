@@ -51,7 +51,7 @@ class AttendeeService {
 
   async createAttendee(data) {
     try {
-      const { fullName, auxiliary, type,phoneNumber } = data;
+      const { fullName, auxiliary, type,phoneNumber,dila } = data;
 
       // Generate the next tag number based on the type using _tagNumGenerator function
       const tagNumber = await _tagNumGeneratorForAttendee();
@@ -59,6 +59,7 @@ class AttendeeService {
       const attendeeObj = {
         fullName,
         auxiliary,
+        dila,
         type,
         tagNumber,
         phoneNumber
@@ -89,6 +90,16 @@ class AttendeeService {
       throw new Error('Error updating dila and type');
     }
   }
+
+  async getCountOfHandlersByDila(dila) {
+    try {
+      const count = await Attendee.countDocuments({ type: 'Handler', dila });
+      return count;
+    } catch (error) {
+      throw new Error(`Error fetching count of handlers for dila: ${dila}`);
+    }
+  }
+  
 }
 
 module.exports = AttendeeService;

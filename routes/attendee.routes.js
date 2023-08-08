@@ -19,6 +19,7 @@ router.get('/attendees/count/auxiliary/:auxiliary', attendeeController.getCountO
 router.post('/attendees', attendeeController.createAttendee);
 router.put('/attendee/update/:attendeeId/:newDila/:newType', attendeeController.updateAttendeeTypeAndDila);
 
+router.get('/attendees/count/handlers/:dila', attendeeController.getCountOfHandlersByDila);
 
 // get by ids
 router.get('/attendee/:ids',attendeeController.getAttendeesByIds)

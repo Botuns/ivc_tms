@@ -28,11 +28,20 @@ class AttendeeController {
       res.status(500).json({ error: 'Error returning type of all attendees' });
     }
   }
+  async getCountOfHandlersByDila(req, res) {
+    const { dila } = req.params;
+    try {
+      const count = await attendeeService.getCountOfHandlersByDila(dila);
+      res.status(200).json({ count });
+    } catch (error) {
+      res.status(500).json({ error: `Error fetching count of handlers for dila: ${dila}` });
+    }
+  }
   async updateAttendeeTypeAndDila(req,res){
     const {attendeeId, newDila, newType} = req.params
     try {
       const attendees = await attendeeService.updateDilaAndType(attendeeId, newDila, newType);
-      res.json({ attendees });
+      res.status(200).json({ attendees });
     } catch (error) {
       res.status(500).json({ error: 'Error returning type of all attendees' });
     }
