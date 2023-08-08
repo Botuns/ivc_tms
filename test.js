@@ -1,30 +1,22 @@
-// const AtfalModel = require('./models/_attendeeModel')
-// const dbConfig = require('./configs/_dbConfig');
-// const dbConnect = require('./configs/_dbConfig');
+const AtfalService = require('./services/_atfalService')
+const atfalService = new AtfalService();
+const dbConnect = require('./configs/_dbConfig')
 
-// const batchSize = 100; // Set the batch size as per your requirement
+// Replace 'John Doe' with the full name of the record you want to delete
+const atfalId = '64d1251f472611e8e421c72c';
+async function deleter(){
+    await dbConnect()
 
-// async function deleteAllRecords() {
-//   // await dbConfig()
-//   await dbConnect()
-//   try {
-//     let deletedCount = 0;
-//     let done = false;
+atfalService.deleteAtfalById(atfalId)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });
 
-//     while (!done) {
-//       const result = await AtfalModel.deleteMany();
-//       const { deletedCount: currentBatchDeletedCount } = result;
-//       deletedCount += currentBatchDeletedCount;
 
-//       if (currentBatchDeletedCount < batchSize) {
-//         done = true;
-//       }
-//     }
+}
 
-//     console.log(`All ${deletedCount} records deleted successfully.`);
-//   } catch (err) {
-//     console.error('Error occurred:', err);
-//   }
-// }
+deleter()
 
-// deleteAllRecords()

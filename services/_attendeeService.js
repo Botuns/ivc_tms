@@ -26,6 +26,14 @@ class AttendeeService {
     }
   }
 
+  async getAttendeesByType(type) {
+    try {
+      return await Attendee.find({ type: type });
+    } catch (error) {
+      throw new Error(`Error fetching Attendee for Type: ${type}`);
+    }
+  }
+
   async getCountOfAttendeesByAuxiliary(auxiliary) {
     try {
       return await Attendee.countDocuments({ auxiliary });
@@ -60,6 +68,25 @@ class AttendeeService {
     } catch (error) {
       console.log(error)
       throw new Error('Error creating new attendee');
+    }
+  }
+
+  async updateDilaAndType(attendeeId, newDila, newType) {
+    try {
+      const attendee = await Attendee.findById(attendeeId);
+
+      if (!attendee) {
+        throw new Error('Attendee not found');
+      }
+
+      attendee.dila = newDila;
+      attendee.type = newType;
+
+      await attendee.save();
+
+      return attendee;
+    } catch (error) {
+      throw new Error('Error updating dila and type');
     }
   }
 }

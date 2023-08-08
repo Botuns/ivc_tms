@@ -33,6 +33,24 @@ class AtfalService {
       throw new Error(`Error fetching Atfal for Stage: ${stage}`);
     }
   }
+  async deleteAtfalById(atfalId) {
+    try {
+      // Find the record with the given ID
+      const atfalToDelete = await Atfal.findOneAndDelete(atfalId);
+      // console.log(atfalToDelete)
+
+      if (!atfalToDelete) {
+        throw new Error(`Atfal with ID ${atfalId} not found`);
+      }
+
+      // Delete the record
+      // await atfalToDelete();
+
+      return `Atfal with ID ${atfalId} deleted successfully`;
+    } catch (error) {
+      throw new Error(`Error deleting Atfal with ID ${atfalId}: ${error.message}`);
+    }
+  }
 
   async getAllAtfalForDila(dila) {
     try {

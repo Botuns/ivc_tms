@@ -10,6 +10,11 @@ const attendeeSchema = new mongoose.Schema({
     enum: ['lajna', 'khudam', 'ansarullah','not-applicable'],
     required: true,
   },
+  dila:{
+    type:String,
+    enum:['Ibadan','Oyo','Monatan','Oluyole-Onaara','Asipa-Oleyo','Omi-adio','Apata','Ikoyi-ile-Ogbomosho','Ibarapa','Coca-cola','Akinyele','Oke-ogun','none'],
+    default:'none'
+},
   type: {
     type: String,
     enum: [
@@ -27,7 +32,8 @@ const attendeeSchema = new mongoose.Schema({
       'Vip-Care',
       'Sports',
       'Wakariamoh',
-      'Tajneed'
+      'Tajneed',
+      'Medical'
     ],
     required: true,
   },

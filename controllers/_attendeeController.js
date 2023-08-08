@@ -19,6 +19,24 @@ class AttendeeController {
       res.status(500).json({ error: 'Error fetching count of all attendees' });
     }
   }
+  async getAttendeesByType(req,res){
+    const {type} = req.params
+    try {
+      const attendees = await attendeeService.getAttendeesByType(type);
+      res.json({ attendees });
+    } catch (error) {
+      res.status(500).json({ error: 'Error returning type of all attendees' });
+    }
+  }
+  async updateAttendeeTypeAndDila(req,res){
+    const {attendeeId, newDila, newType} = req.params
+    try {
+      const attendees = await attendeeService.updateDilaAndType(attendeeId, newDila, newType);
+      res.json({ attendees });
+    } catch (error) {
+      res.status(500).json({ error: 'Error returning type of all attendees' });
+    }
+  }
   async getAttendeesByIds(req, res){
     const { ids } = req.params;
     const idArray = ids.split(',').map(id => (id));
